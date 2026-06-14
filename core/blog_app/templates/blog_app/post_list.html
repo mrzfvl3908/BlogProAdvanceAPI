@@ -100,7 +100,7 @@
                         <div class="single-post row">
                             <div class="col-lg-3  col-md-3 meta-details">
                                 <ul class="tags">
-                                    <li><a href="">{{ post.category.all|join:", " }}</a></li>
+                                    <li><a href="">{{ post.category.name}}</a></li>
 
                                 </ul>
                                 <div class="user-details row">
@@ -118,13 +118,17 @@
                             </div>
                             <div class="col-lg-9 col-md-9 ">
                                 <div class="feature-img">
-                                    <img class="img-fluid" src="{% if post.image %}{{ post.image.url }}{% else %}/static/images/default.jpg{% endif %}" alt="picture">
+                                    <img class="img-fluid" src="
+                                            {% if post.image %}{{ post.image.url }}{% else %}/static/images/default.jpg{% endif %}"
+                                         alt="picture">
                                 </div>
                                 <a class="posts-title" href="{{ post.get_absolute_url }}"><h3>{{ post.title }}</h3></a>
                                 <p class="excert">
                                     {{ post.content | truncatewords:20 }}
                                 </p>
                                 <a href="{{ post.get_absolute_url }}" class="primary-btn">View More</a>
+                                <a href="{% url 'blog_app:post-update' slug=post.slug %}" class="primary-btn">Edit Post</a>
+                                <a href="{% url 'blog_app:post-delete' slug=post.slug %}" class="primary-btn">Delete Post</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -145,9 +149,9 @@
 
                             {% for num in page_obj.paginator.page_range %}
                                 {% if num == page_obj.number %}
-                                <li class="page-item active"><a href="" class="page-link">{{ num }}</a></li>
+                                    <li class="page-item active"><a href="" class="page-link">{{ num }}</a></li>
                                 {% else %}
-                                <li class="page-item"><a href="?page={{ num }}" class="page-link">{{ num }}</a></li>
+                                    <li class="page-item"><a href="?page={{ num }}" class="page-link">{{ num }}</a></li>
                                 {% endif %}
                             {% endfor %}
 

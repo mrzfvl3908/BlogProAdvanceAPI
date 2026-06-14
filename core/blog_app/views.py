@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db.models import F
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from blog_app.forms import PostForm
 from blog_app.models import Post
 
@@ -35,8 +35,19 @@ class PostDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm
-    success_url = '/'
+    success_url = '/blog/posts_list'
 
     def form_valid(self, form):
         form.instance.author = self.request.user.profile
         return super().form_valid(form)
+
+
+class PostUpdateView(LoginRequiredMixin, UpdateView):
+    model = Post
+    form_class = PostForm
+    success_url = '/blog/posts_list'
+
+
+class PostDeleteView(LoginRequiredMixin, DeleteView):
+    model = Post
+    success_url = '/blog/posts_list/'
