@@ -27,11 +27,20 @@
             </div>
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li class="{% if request.resolver_match.url_name == 'home' %}active bg-orange{% endif %}" ><a href="{% url 'home_app:home' %}">Home</a></li>
+                    <li class="{% if request.resolver_match.url_name == 'home' %}active bg-orange{% endif %}"><a
+                            href="{% url 'home_app:home' %}">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li class="menu-has-children"><a href="{% url 'blog_app:posts-list' %}">Blog</a>
                     </li>
                     <li><a href="contact.html">Contact</a></li>
+                    {% if user.is_authenticated %}
+                        <li class="menu-has-children"><a href="">Postal operations </a>
+                            <ul>
+                                <li><a href="{% url 'blog_app:post-create' %}">AddPost</a></li>
+                                <li><a href="#">Item Two</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
                 </ul>
             </nav><!-- #nav-menu-container -->
         </div>

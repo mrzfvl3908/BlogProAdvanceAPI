@@ -1,18 +1,21 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db.models import F
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
+from blog_app.forms import PostForm
 from blog_app.models import Post
 
 
-class PostListView(ListView):
+class PostListView(LoginRequiredMixin, ListView):
     queryset = Post.objects.filter(status=True)
     context_object_name = 'posts'
     paginate_by = 2
 
 
-class PostDetailView(DetailView):
+class PostDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = Post
     context_object_name = 'post'
+    permission_required = 'blog.view_post'
 
     def get_object(self, queryset=None):
         obj = super().get_object(queryset)
@@ -27,3 +30,13 @@ class PostDetailView(DetailView):
 
         obj.refresh_from_db()
         return obj
+
+
+class PostCreateView(LoginRequiredMixin, CreateView):
+    model = Post
+    form_class = PostForm
+    success_url = '/'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user.profile
+        return super().form_valid(form)

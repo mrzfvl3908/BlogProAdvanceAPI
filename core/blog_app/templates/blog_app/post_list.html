@@ -118,7 +118,7 @@
                             </div>
                             <div class="col-lg-9 col-md-9 ">
                                 <div class="feature-img">
-                                    <img class="img-fluid" src="{{ post.image.url }}" alt="picture">
+                                    <img class="img-fluid" src="{% if post.image %}{{ post.image.url }}{% else %}/static/images/default.jpg{% endif %}" alt="picture">
                                 </div>
                                 <a class="posts-title" href="{{ post.get_absolute_url }}"><h3>{{ post.title }}</h3></a>
                                 <p class="excert">
