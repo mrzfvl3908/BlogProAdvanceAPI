@@ -20,8 +20,6 @@ class Post(models.Model):
     class Meta:
         ordering = ['-created_date']
 
-    from django.utils.text import slugify
-
     def save(self, *args, **kwargs):
         if not self.slug:
             base_slug = slugify(self.title, allow_unicode=True)
