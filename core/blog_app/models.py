@@ -16,6 +16,7 @@ class Post(models.Model):
     updated_date = models.DateTimeField(auto_now=True)
     status = models.BooleanField(default=False)
     slug = models.SlugField(unique=True, allow_unicode=True, blank=True)
+    views = models.PositiveIntegerField(default=0)
 
     class Meta:
         ordering = ['-created_date']
