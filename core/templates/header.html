@@ -29,11 +29,7 @@
                 <ul class="nav-menu">
                     <li class="{% if request.resolver_match.url_name == 'home' %}active bg-orange{% endif %}" ><a href="{% url 'home_app:home' %}">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li class="menu-has-children"><a href="">Blog</a>
-                        <ul>
-                            <li><a href="blog-home.html">Blog Home</a></li>
-                            <li><a href="blog-single.html">Blog Single</a></li>
-                        </ul>
+                    <li class="menu-has-children"><a href="{% url 'blog_app:posts-list' %}">Blog</a>
                     </li>
                     <li class="menu-has-children"><a href="">Pages</a>
                         <ul>
