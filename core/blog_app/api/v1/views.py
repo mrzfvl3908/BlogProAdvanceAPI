@@ -5,8 +5,8 @@ from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnl
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
-from blog_app.api.v1.serializers import PostSerializer
-from blog_app.models import Post
+from blog_app.api.v1.serializers import PostSerializer, CategorySerializer
+from blog_app.models import Post, Category
 
 """Example DBV"""
 # @api_view()
@@ -86,3 +86,8 @@ class PostListModelViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = PostSerializer
     queryset = Post.objects.filter(status=True)
+
+class CategoryModelViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
