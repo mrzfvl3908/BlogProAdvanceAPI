@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01c194a3-bf0d-4949-a24a-23bd5f3e3b12" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/blog_app/api/v1/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog_app/api/v1/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog_app/api/v1/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog_app/api/v1/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog_app/api/v1/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog_app/api/v1/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="01c194a3-bf0d-4949-a24a-23bd5f3e3b12" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -133,7 +129,7 @@
       <workItem from="1781588589789" duration="1883000" />
       <workItem from="1781595459106" duration="1875000" />
       <workItem from="1781640878333" duration="3214000" />
-      <workItem from="1781677025661" duration="9077000" />
+      <workItem from="1781677025661" duration="9451000" />
     </task>
     <servers />
   </component>
