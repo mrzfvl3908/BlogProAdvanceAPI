@@ -1,5 +1,6 @@
 from django.template.context_processors import request
 from rest_framework import serializers
+from accounts_app.models import Profile
 from blog_app.models import Post, Category
 
 
@@ -22,7 +23,7 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
         fields = ['id', 'category', 'author', 'title', 'content', 'snippet', 'image', 'status', 'created_date',
                   'relative_url', 'absolute_url']
-        # read_only_fields = ['content']
+        read_only_fields = ['author']
 
     def get_absolute_url(self, obj):  # => برای توابع درونی سریالایزر
         request = self.context.get('request')
@@ -40,3 +41,7 @@ class PostSerializer(serializers.ModelSerializer):
 
         rep['category'] = CategorySerializer(instance.category).data
         return rep
+
+    def create(self, validated_data): #=> برای اینکه در هنگام ایجاد پست کاربری که لاگین شده با همون کاربر پست ثبت بشه
+        validated_data['author'] = Profile.objects.get(user__id = self.context.get('request').user.id)
+        return super().create(validated_data)
