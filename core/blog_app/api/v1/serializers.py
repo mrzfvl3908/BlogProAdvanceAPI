@@ -1,4 +1,3 @@
-from django.template.context_processors import request
 from rest_framework import serializers
 from accounts_app.models import Profile
 from blog_app.models import Post, Category
@@ -31,7 +30,7 @@ class PostSerializer(serializers.ModelSerializer):
             obj.get_absolute_api_url()
         )
 
-    def to_representation(self, instance): # => برای گرفتن ابجکت و حذف در post_detail و نمایش در لیست پست ها
+    def to_representation(self, instance):  # => برای گرفتن ابجکت و حذف در post_detail و نمایش در لیست پست ها
         request = self.context.get('request')
         rep = super().to_representation(instance)
         if request.parser_context.get('kwargs').get('pk'):
@@ -39,9 +38,9 @@ class PostSerializer(serializers.ModelSerializer):
             rep.pop('relative_url', None)
             rep.pop('absolute_url', None)
 
-        rep['category'] = CategorySerializer(instance.category).data
+        rep['category'] = CategorySerializer(instance.category, context={request: 'request'}).data
         return rep
 
-    def create(self, validated_data): #=> برای اینکه در هنگام ایجاد پست کاربری که لاگین شده با همون کاربر پست ثبت بشه
-        validated_data['author'] = Profile.objects.get(user__id = self.context.get('request').user.id)
+    def create(self, validated_data):  # => برای اینکه در هنگام ایجاد پست کاربری که لاگین شده با همون کاربر پست ثبت بشه
+        validated_data['author'] = Profile.objects.get(user__id=self.context.get('request').user.id)
         return super().create(validated_data)

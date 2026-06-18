@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from blog_app.api.v1.serializers import PostSerializer, CategorySerializer
 from blog_app.models import Post, Category
+from .permissions import IsOwnerOrReadOnly
 
 """Example DBV"""
 # @api_view()
@@ -83,7 +84,7 @@ from blog_app.models import Post, Category
 
 """Example ModelViewSet"""
 class PostListModelViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly,)
     serializer_class = PostSerializer
     queryset = Post.objects.filter(status=True)
 
