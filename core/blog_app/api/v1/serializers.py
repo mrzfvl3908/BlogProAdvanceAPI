@@ -14,6 +14,8 @@ class PostSerializer(serializers.ModelSerializer):
     relative_url = serializers.URLField(source='get_absolute_api_url',
                                         read_only=True)  # => توابع وابسته به مدل و فانکشن از مدل
     absolute_url = serializers.SerializerMethodField()  # => برای توابه ئابسته بع داخل سریالایزر اگه درخواست داریم باید از درو همین سریالایزر فانکشن بنویسم اگر ن از مدل میشه
+    # absolute_url = serializers.SerializerMethodField(method_name='get_abs_url') => get_absolute_url برای تغییر نام و استفاده از متد نام به جای
+    # category = CategorySerializer() => گرفتن موارد کتگوری
 
     class Meta:
         model = Post
@@ -26,3 +28,6 @@ class PostSerializer(serializers.ModelSerializer):
         return request.build_absolute_uri(
             obj.get_absolute_api_url()
         )
+
+    def to_representation(self, instance):
+        return super().to_representation(instance)
