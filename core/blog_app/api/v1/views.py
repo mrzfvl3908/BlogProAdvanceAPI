@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from blog_app.api.v1.serializers import PostSerializer, CategorySerializer
 from blog_app.models import Post, Category
 from .permissions import IsOwnerOrReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
 
 """Example DBV"""
 # @api_view()
@@ -87,6 +88,8 @@ class PostListModelViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly,)
     serializer_class = PostSerializer
     queryset = Post.objects.filter(status=True)
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['category', 'author', 'status']
 
 class CategoryModelViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
