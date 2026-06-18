@@ -38,6 +38,12 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('blog_app:post-detail', kwargs={'slug': self.slug})
 
+    def get_snippet(self):
+        return self.content[:10]
+
+    def get_absolute_api_url(self):
+        return reverse('blog_app:api-v1:post-detail', kwargs={'pk':self.pk})
+
     def __str__(self):
         return self.title
 
