@@ -1,5 +1,6 @@
 from django.core.serializers import serialize
 from rest_framework import status, viewsets
+from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
@@ -88,8 +89,10 @@ class PostListModelViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly,)
     serializer_class = PostSerializer
     queryset = Post.objects.filter(status=True)
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
     filterset_fields = ['category', 'author', 'status']
+    search_fields = ['title', 'content']
+    ordering_fields = ['created_date', 'updated_date']
 
 class CategoryModelViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)

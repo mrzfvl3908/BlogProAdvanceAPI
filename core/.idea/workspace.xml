@@ -54,6 +54,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
+    "Django Server.core.executor": "Run",
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "django.template.preview.state": "SHOW_EDITOR",
@@ -140,7 +141,7 @@
       <workItem from="1781712011727" duration="14000" />
       <workItem from="1781768051241" duration="4225000" />
       <workItem from="1781783318037" duration="4059000" />
-      <workItem from="1781793001013" duration="2014000" />
+      <workItem from="1781793001013" duration="3755000" />
     </task>
     <servers />
   </component>
