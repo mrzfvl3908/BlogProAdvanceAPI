@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from blog_app.api.v1.serializers import PostSerializer, CategorySerializer
 from blog_app.models import Post, Category
+from .paginations import CustomPagination
 from .permissions import IsOwnerOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
 
@@ -93,6 +94,7 @@ class PostListModelViewSet(viewsets.ModelViewSet):
     filterset_fields = ['category', 'author', 'status']
     search_fields = ['title', 'content']
     ordering_fields = ['created_date', 'updated_date']
+    pagination_class = CustomPagination
 
 class CategoryModelViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
