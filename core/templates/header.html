@@ -35,12 +35,36 @@
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="{% url 'blog_app:api-v1:post-list' %}">API</a></li>
                     {% if user.is_authenticated %}
-                        <li class="menu-has-children"><a href="">Postal operations </a>
+                        <li class="menu-has-children">
+                            <a>{{ user.email }}</a>
+
                             <ul>
-                                <li><a href="{% url 'blog_app:post-create' %}">AddPost</a></li>
-                                {#                                <li><a href="#">Item Two</a></li>#}
+                                <li>
+                                    <a class="menu-item" href="{% url 'blog_app:post-create' %}">AddPost</a>
+                                </li>
+
+                                <li>
+                                    <a class="menu-item">Profile</a>
+                                </li>
+
+                                <li>
+                                    <form method="POST" action="{% url 'accounts_app:logout' %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="menu-item logout-btn">
+                                            Logout
+                                        </button>
+                                    </form>
+                                </li>
                             </ul>
                         </li>
+                    {% else %}
+                        <li class="menu-has-children"><a href="">Sign-in</a>
+                            <ul>
+                                <li><a href="{% url 'accounts_app:login' %}">Login</a></li>
+                                <li><a href="{% url 'accounts_app:register' %}">register</a></li>
+                            </ul>
+                        </li>
+
                     {% endif %}
                 </ul>
             </nav><!-- #nav-menu-container -->

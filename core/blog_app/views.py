@@ -12,10 +12,10 @@ class PostListView(LoginRequiredMixin, ListView):
     paginate_by = 2
 
 
-class PostDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
+class PostDetailView(LoginRequiredMixin, DetailView): #=> PermissionRequiredMixin برای استفاده از خط پایین که کامنت شده است
     model = Post
     context_object_name = 'post'
-    permission_required = 'blog.view_post'
+    # permission_required = 'blog.view_post'
 
     def get_object(self, queryset=None):
         obj = super().get_object(queryset)
