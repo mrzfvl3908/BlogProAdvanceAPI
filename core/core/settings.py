@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django_cleanup',
     'rest_framework',
     'django_filters',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -134,6 +135,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # user manager config
 AUTH_USER_MODEL = 'accounts_app.User'
 
+# login manager
 LOGIN_URL = "/accounts/login/"
 
 LOGIN_REDIRECT_URL = "/"
