@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     # my_install_apps
     'django_cleanup',
     'rest_framework',
-    'rest_framework.authtoken',
+    'rest_framework.authtoken', #=> بعد از گذاشتن این حتما باید مایگریت کنی دیتابیس رو
     'django_filters',
     'drf_yasg',
 ]
